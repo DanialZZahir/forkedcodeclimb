@@ -1,4 +1,4 @@
-const GRAVITY = -0.5;
+const GRAVITY = -0.6;
 
 var playing = true;
 
@@ -6,11 +6,6 @@ var player;
 var points;
 
 var platforms = [];
-
-// function preload(){
-// let character;
-// character = loadImage('code-climb-character.png')
-// }
 
 function setup() {
 
@@ -20,10 +15,7 @@ function setup() {
   
     cnv.position(x, y);
 
-
-
-
-  player = new Doodler(width / 2, height / 2, false, 30, color('#EC5800'));
+  player = new Doodler(width / 2, height / 2, false, 30, color("#FFF060"));
   
   platforms = generatePlatforms();
   
@@ -57,7 +49,6 @@ if (playing === true){
 function touchEnded(){
   playing = !playing;
 }
-
 
 /**
  * updates, draws, and applies GRAVITY to player
@@ -114,7 +105,7 @@ function handlePlatforms() {
         platforms.push(new Platform(x, y, 55, color("#FF80F0")));
       } else {
 
-        if (random() > 0.05) {
+        if (random() > 0.5) {
 					// 5% chance of being a doodler
 
 					platforms.push(new Doodler(x, y, true, 50, color("#00FFFF")));
@@ -140,8 +131,8 @@ function generatePlatforms() {
 
       var x = noise(i, y) * width;
 
-      if (noise(y, i) > 0.5) // 50% chance of a new platform
-        field.push(new Platform(x, y, 55, color("#30D5C8")));
+      if (noise(y, i) > 0.3) // 50% chance of a new platform
+        field.push(new Platform(x, y, 55, color("#FF80F0")));
     }
   }
 
@@ -165,33 +156,30 @@ function handleKeys() {
 /**
  * draws the score
  */
-let score = 0;
 function drawScore() {
 
-  textSize(70);
+  textSize(60);
   textAlign(LEFT);
-  textFont(myFont);
   fill(255);
   noStroke();
-  text((player.maxAltitude + score).toFixed(0), 50, 50);
+  textFont(myFont);
+  text((player.maxAltitude + points).toFixed(0), 50, 50);
 }
 
 /**
  * ends loop, draws game over message
  */
-
 let myFont;
 function preload(){
-myFont = loadFont('fonts/upheavtt.ttf')
+myFont = loadFont('/fonts/upheavtt.ttf')
 }
-
 function endGame() {
 
   textAlign(CENTER);
-  textSize(100);
+  textSize(60);
   noStroke();
   fill("#90FF90");
-  textFont(myFont)
+  textFont(myFont);
   text("Game Over!", width / 2, height / 2);
   noLoop();
 }
