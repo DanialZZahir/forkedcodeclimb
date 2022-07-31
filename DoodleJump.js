@@ -4,12 +4,12 @@ var playing = true;
 
 var player;
 var points;
-var sound;
+var collideSound;
 
 var platforms = [];
 
 function preload(){
-  collideSound = loadSound("sounds/jumpsound.mp3")
+  collideSound = loadSound("lib/sounds/jumpsound.mp3")
 }
 
 function setup() {
