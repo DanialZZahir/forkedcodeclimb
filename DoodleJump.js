@@ -4,8 +4,13 @@ var playing = true;
 
 var player;
 var points;
+var sound;
 
 var platforms = [];
+
+function preload(){
+  collideSound = loadSound("sounds/jumpsound.mp3")
+}
 
 function setup() {
 
@@ -68,6 +73,8 @@ function handlePlayer() {
 /**
  * checks collision, draws, and manages all platforms
  */
+
+
 function handlePlatforms() {
 
   for (var i = platforms.length - 1; i >= 0; i--) {
@@ -81,6 +88,7 @@ function handlePlatforms() {
 				platforms[i].update(); // update Doodlers
 
       if (platforms[i].collidesWith(player)) {
+
 
         player.jump();
         if (platforms[i] instanceof Doodler) {
@@ -174,7 +182,6 @@ function preload(){
 myFont = loadFont('/fonts/upheavtt.ttf')
 }
 function endGame() {
-
   textAlign(CENTER);
   textSize(60);
   noStroke();
