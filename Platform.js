@@ -1,5 +1,4 @@
 function Platform(x, altitude, size, color) {
-
     this.x = x;
     this.altitude = altitude;
   
@@ -38,21 +37,21 @@ function Platform(x, altitude, size, color) {
   
     stroke("#FF0000");
     strokeWeight(10);
-  
+    
     if (Math.abs(platformTop - doodlerBottom) < -doodler.velocity.y && platformTop < doodlerBottom) {
-  
+      
       var platformLeftX = this.x; // platform lefter-most x bound
       var platformRightX = this.x + this.size; // platform righter-most x bound
-  
+      
       var doodlerLeftX = doodler.location.x - doodler.size / 2; // doodler lefter-most x bound
       var doodlerRightX = doodler.location.x + doodler.size / 2; // doodler righter-most x bound
-  
+      
       return ((doodlerLeftX >= platformLeftX && // if the doodler's left X falls between the platform
-              doodlerLeftX <= platformRightX) ||
-              (doodlerRightX >= platformLeftX && // if the doodler's right X falls between the platform
-              doodlerRightX <= platformRightX));
+      doodlerLeftX <= platformRightX) ||
+      (doodlerRightX >= platformLeftX && // if the doodler's right X falls between the platform
+      doodlerRightX <= platformRightX));
     }
-  
+    
     return false;
   };
   
