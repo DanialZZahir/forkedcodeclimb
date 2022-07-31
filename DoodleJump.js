@@ -93,8 +93,8 @@ function handlePlatforms() {
         player.jump();
         if (platforms[i] instanceof Doodler) {
 					// it's not a platform, but a doodler!
-
           points += 1;
+          collideSound.play();
           platforms.splice(i, 1); // remove from array
         }
       }

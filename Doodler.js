@@ -75,6 +75,8 @@ function Doodler(x, altitude, enemy, size, color) {
   /**
    * returns whether or not the doodler collides with another doodler
    */
+
+
   Doodler.prototype.collidesWith = function(doodler) {
   
     var distance = dist(doodler.location.x, doodler.location.y, this.location.x, this.location.y);
