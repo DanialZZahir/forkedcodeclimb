@@ -4,24 +4,20 @@ var playing = true;
 
 var player;
 var points;
-var collideSound;
-
+var sound;
 var platforms = [];
 
-function preload(){
-  collideSound = loadSound("lib/sounds/jumpsound.mp3")
-}
 
 function setup() {
 
-  var cnv = createCanvas(1278, 666);
-  var x = (windowWidth - (width - 211)) / 2;
-  var y = (windowHeight - height + 74) / 2;
+  var cnv = createCanvas(1310, 666);
+  var x = (windowWidth - 1100) / 2;
+  var y = (windowHeight - 670) / 2;
   
-    cnv.position(x, y);
+  cnv.position(x, y);
 
   player = new Doodler(width / 2, height / 2, false, 30, color("#FFF060"));
-  
+
   platforms = generatePlatforms();
   
   points = 0;
@@ -30,9 +26,6 @@ function setup() {
   frameRate(60);
   
 }
-
-
-
 
 function draw() {
 
@@ -73,7 +66,9 @@ function handlePlayer() {
 /**
  * checks collision, draws, and manages all platforms
  */
-
+ function preload(){
+  sound = loadSound("Lib/sound/jump.mp3");
+}
 
 function handlePlatforms() {
 
@@ -89,12 +84,12 @@ function handlePlatforms() {
 
       if (platforms[i].collidesWith(player)) {
 
-
         player.jump();
         if (platforms[i] instanceof Doodler) {
+          sound.play();
 					// it's not a platform, but a doodler!
           points += 1;
-          collideSound.play();
+
           platforms.splice(i, 1); // remove from array
         }
       }
@@ -140,7 +135,7 @@ function generatePlatforms() {
       var x = noise(i, y) * width;
 
       if (noise(y, i) > 0.3) // 50% chance of a new platform
-        field.push(new Platform(x, y, 55, color("#FF80F0")));
+        field.push(new Platform(x, y, 55, color("#00FF00")));
     }
   }
 
@@ -181,6 +176,7 @@ let myFont;
 function preload(){
 myFont = loadFont('/fonts/upheavtt.ttf')
 }
+
 function endGame() {
   textAlign(CENTER);
   textSize(60);
